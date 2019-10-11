@@ -1,8 +1,31 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import LoadingBar from "react-redux-loading";
+
+import { handleInitialData } from "./../actions/shared";
+import authUser from "./../reducers/authUser";
 import "./App.css";
 
-function App() {
-  return <div className="app">Hello World!</div>;
+class App extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(handleInitialData());
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <LoadingBar />
+        <div className="app">Hello World!</div>
+      </Fragment>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps() {
+  return {
+    loading: authUser === null
+  };
+}
+
+export default connect(mapStateToProps)(App);
