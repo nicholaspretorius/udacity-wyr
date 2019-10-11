@@ -21,13 +21,14 @@ function addQuestion(question) {
 }
 
 // thunks
-export function handleAddQuestion(question) {
+export function handleAddQuestion({ optionOneText, optionTwoText }) {
   return (dispatch, getState) => {
-    const { authedUser } = getState();
+    const { authUser } = getState();
     dispatch(showLoading());
     return saveQuestion({
-      question,
-      author: authedUser
+      optionOneText,
+      optionTwoText,
+      author: authUser
     })
       .then(question => {
         dispatch(addQuestion(question));
