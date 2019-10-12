@@ -1,7 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = props => {
+  const { authUser, users } = props;
+
+  console.log(users);
   return (
     <div>
       <ul>
@@ -17,9 +21,14 @@ const Nav = () => {
         <li>
           <Link to="/login">Logout</Link>
         </li>
+        <li>{authUser}</li>
       </ul>
     </div>
   );
 };
 
-export default Nav;
+function mapStateToProps({ authUser, users }) {
+  return { authUser, users };
+}
+
+export default connect(mapStateToProps)(Nav);

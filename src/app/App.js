@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 
 import { handleInitialData } from "./../actions/shared";
-import authUser from "./../reducers/authUser";
 
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
@@ -22,27 +21,31 @@ class App extends Component {
   }
 
   render() {
+    const { loading } = this.props;
+    console.log("Loading: ", loading);
     return (
       <BrowserRouter>
         <Fragment>
           <LoadingBar />
-          <div className="app">
-            <Nav />
-            <Switch>
-              <Route path="/" exact component={Dashboard} />
-              <Route path="/new" component={NewQuestion} />
-              <Route path="/leaderboard" component={Leaderboard} />
-              <Route path="/login" exact component={Login} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
+          {loading === false && (
+            <div className="app">
+              <Nav />
+              <Switch>
+                <Route path="/" exact component={Dashboard} />
+                <Route path="/new" component={NewQuestion} />
+                <Route path="/leaderboard" component={Leaderboard} />
+                <Route path="/login" exact component={Login} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          )}
         </Fragment>
       </BrowserRouter>
     );
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps({ authUser }) {
   return {
     loading: authUser === null
   };
