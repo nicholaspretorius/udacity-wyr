@@ -3,10 +3,18 @@ import { connect } from "react-redux";
 
 import { handleAnswerQuestion } from "./../../actions/questions";
 
+import QuestionResults from "./QuestionResults";
+
 class Question extends Component {
   state = {
     selectedOption: "optionOne"
   };
+
+  hasUserAnswered(id) {
+    const { user } = this.props;
+    const answers = Object.keys(user.answers);
+    return answers.includes(id);
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -22,8 +30,6 @@ class Question extends Component {
     this.setState({
       selectedOption: "optionOne"
     });
-
-    console.log("Selected: ", selectedOption, " for ", id, " by ", this.props.authUser);
   };
 
   handleChange = ({ target }) => {
@@ -31,11 +37,18 @@ class Question extends Component {
   };
 
   render() {
-    const { question } = this.props;
+    const { id, question, user } = this.props;
     const { selectedOption } = this.state;
+    let hasAnswered = false;
+
+    if (user) {
+      hasAnswered = this.hasUserAnswered(id);
+    }
+
     return (
       <div>
-        {question && (
+        {question && hasAnswered && <QuestionResults id={id} />}
+        {question && !hasAnswered && (
           <form onSubmit={this.handleSubmit}>
             <span>Would you rather:</span>
             <div>
@@ -66,13 +79,17 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authUser, questions }, props) {
+function mapStateToProps({ authUser, questions, users }, props) {
   const { id } = props.match.params;
+
+  console.log("mapStateToProps: ", questions);
+  console.log("mapStateToProps: ", users);
 
   return {
     id,
     authUser,
-    question: questions[id]
+    question: questions[id],
+    user: users[authUser]
   };
 }
 
