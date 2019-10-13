@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { handleAnswerQuestion } from "./../../actions/questions";
+
 class Question extends Component {
   state = {
     selectedOption: "optionOne"
@@ -8,14 +10,20 @@ class Question extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(
-      "Selected: ",
-      this.state.selectedOption,
-      " for ",
-      this.props.id,
-      " by ",
-      this.props.authUser
+    const { selectedOption } = this.state;
+    const { id, dispatch } = this.props;
+    dispatch(
+      handleAnswerQuestion({
+        answer: selectedOption,
+        qid: id
+      })
     );
+
+    this.setState({
+      selectedOption: "optionOne"
+    });
+
+    console.log("Selected: ", selectedOption, " for ", id, " by ", this.props.authUser);
   };
 
   handleChange = ({ target }) => {
