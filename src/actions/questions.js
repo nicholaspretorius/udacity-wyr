@@ -36,7 +36,7 @@ export function handleAddQuestion({ optionOneText, optionTwoText }) {
       .then(() => dispatch(hideLoading()))
       .catch(e => {
         console.warn("Error in handleAddTweet", e);
-        alert("There was an error adding the tweet");
+        alert("There was an error adding the question");
       });
   };
 }
