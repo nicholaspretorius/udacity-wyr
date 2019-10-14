@@ -5,9 +5,10 @@ import { getUsersAndQuestionsData } from "./../utils/api";
 import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
 import { setAuthUser } from "./authUser";
+import { getItem } from "./../app/services/localStorage";
 
-const AUTHED_USER = "sarahedo";
-//const AUTHED_USER = "";
+//const AUTHED_USER = "sarahedo";
+const AUTHED_USER = getItem("authUser") || "";
 
 export function handleInitialData() {
   return dispatch => {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import _ from "lodash";
 
 import QuestionList from "./QuestionList";
@@ -32,7 +31,6 @@ class Dashboard extends Component {
             {answeredIds && <QuestionList questions={answeredIds} title="Answered Questions" />}
           </div>
         )}
-        {loading === true && <Redirect to="/login" />}
       </div>
     );
   }
