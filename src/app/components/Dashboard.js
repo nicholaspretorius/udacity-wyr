@@ -12,7 +12,11 @@ class Dashboard extends Component {
     let answeredIds, unansweredIds;
 
     if (loading === false && users[authUser]) {
-      answeredIds = Object.keys(users[authUser].answers);
+      answeredIds = Object.keys(questions)
+        .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+        .filter(q => {
+          return Object.keys(users[authUser].answers).includes(q);
+        });
       unansweredIds = _.difference(questionIds, answeredIds);
     }
 
