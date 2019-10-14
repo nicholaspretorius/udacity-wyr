@@ -20,7 +20,7 @@ const Nav = props => {
           <Link to="/new">New Question</Link>
         </li>
 
-        {authUser !== null && (
+        {authUser !== "" && (
           <div>
             <li>
               <Link to="/logout" onClick={() => dispatch(logoutAuthUser(authUser))}>
@@ -30,7 +30,7 @@ const Nav = props => {
             <li>{authUser}</li>
           </div>
         )}
-        {authUser === null && <Link to="/login">Login</Link>}
+        {authUser === "" && <Link to="/login">Login</Link>}
       </ul>
     </div>
   );
