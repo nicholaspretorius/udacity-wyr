@@ -1,17 +1,13 @@
 import React from "react";
 
 const UserScoreCard = ({ user }) => {
-  let answers, questions, total;
   if (user) {
-    answers = Object.keys(user.answers).length;
-    questions = user.questions.length;
-    total = answers + questions;
     return (
       <div>
         <h4>{user.name}</h4>
-        <p>Answered questions: {answers}</p>
-        <p>Asked questions: {questions}</p>
-        <p>Score: {total}</p>
+        <p>Answered questions: {user.score.answers}</p>
+        <p>Asked questions: {user.score.questions}</p>
+        <p>Score: {user.score.total}</p>
       </div>
     );
   } else {
