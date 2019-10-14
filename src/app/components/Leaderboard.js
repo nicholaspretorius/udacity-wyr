@@ -26,8 +26,14 @@ class Leaderboard extends Component {
     return (
       <div>
         <h3>Leaderboard</h3>
-        {users &&
-          sortedUsers.map(user => <UserScoreCard key={user.id} user={user}></UserScoreCard>)}
+        <ol>
+          {users &&
+            sortedUsers.map(user => (
+              <li key={user.id}>
+                <UserScoreCard user={user} />
+              </li>
+            ))}
+        </ol>
       </div>
     );
   }
