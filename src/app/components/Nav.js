@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Nav = props => {
-  const { authUser, users } = props;
-
-  console.log(users);
+  const { authUser } = props;
   return (
     <div>
       <ul>

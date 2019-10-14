@@ -23,7 +23,6 @@ class App extends Component {
 
   render() {
     const { loading } = this.props;
-    console.log("Loading: ", loading);
     return (
       <BrowserRouter>
         <Fragment>
