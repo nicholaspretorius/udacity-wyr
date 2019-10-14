@@ -6,7 +6,7 @@ import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
 import { setAuthUser } from "./authUser";
 
-const AUTHED_USER = "tylermcginnis";
+const AUTHED_USER = "sarahedo";
 
 export function handleInitialData() {
   return dispatch => {
@@ -14,8 +14,8 @@ export function handleInitialData() {
     return getUsersAndQuestionsData()
       .then(({ users, questions }) => {
         dispatch(setAuthUser(AUTHED_USER));
-        dispatch(receiveQuestions(questions));
         dispatch(receiveUsers(users));
+        dispatch(receiveQuestions(questions));
         dispatch(hideLoading());
       })
       .catch(e => {

@@ -8,9 +8,11 @@ class QuestionPreview extends Component {
     const { id, question } = this.props;
     return (
       <div>
-        <Link to={`/question/${id}`}>
-          {id}: Would you rather: {question.optionOne.text} or {question.optionTwo.text} ?
-        </Link>
+        {question && (
+          <Link to={`/question/${id}`}>
+            {id}: Would you rather: {question.optionOne.text} or {question.optionTwo.text} ?
+          </Link>
+        )}
       </div>
     );
   }
