@@ -6,7 +6,8 @@ import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
 import { setAuthUser } from "./authUser";
 
-const AUTHED_USER = "sarahedo";
+//const AUTHED_USER = "sarahedo";
+const AUTHED_USER = null;
 
 export function handleInitialData() {
   return dispatch => {

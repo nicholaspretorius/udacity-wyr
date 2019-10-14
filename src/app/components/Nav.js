@@ -2,8 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { logoutAuthUser } from "./../../actions/authUser";
+
 const Nav = props => {
-  const { authUser } = props;
+  const { authUser, dispatch } = props;
+
   return (
     <div>
       <ul>
@@ -16,10 +19,18 @@ const Nav = props => {
         <li>
           <Link to="/new">New Question</Link>
         </li>
-        <li>
-          <Link to="/login">Logout</Link>
-        </li>
-        <li>{authUser}</li>
+
+        {authUser !== null && (
+          <div>
+            <li>
+              <Link to="/logout" onClick={() => dispatch(logoutAuthUser(authUser))}>
+                Logout
+              </Link>
+            </li>
+            <li>{authUser}</li>
+          </div>
+        )}
+        {authUser === null && <Link to="/login">Login</Link>}
       </ul>
     </div>
   );
