@@ -61,7 +61,6 @@ export function handleAnswerQuestion({ answer, qid }) {
     dispatch(showLoading());
     return saveQuestionAnswer(userAnswer)
       .then(() => {
-        console.log("Answer: ", userAnswer);
         dispatch(answerQuestion(userAnswer));
       })
       .then(() => {
