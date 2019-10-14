@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { handleAnswerQuestion } from "./../../actions/questions";
 
@@ -74,6 +75,7 @@ class Question extends Component {
             <button type="submit">Submit</button>
           </form>
         )}
+        {!question && <Redirect to="/" />}
       </div>
     );
   }
@@ -81,9 +83,6 @@ class Question extends Component {
 
 function mapStateToProps({ authUser, questions, users }, props) {
   const { id } = props.match.params;
-
-  console.log("mapStateToProps: ", questions);
-  console.log("mapStateToProps: ", users);
 
   return {
     id,

@@ -14,7 +14,6 @@ class NewQuestion extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state.data;
-    console.log("Options: ", optionOneText, optionTwoText);
     const { dispatch } = this.props;
     dispatch(handleAddQuestion({ optionOneText, optionTwoText }));
 
@@ -24,6 +23,8 @@ class NewQuestion extends Component {
         optionTwoText: ""
       }
     });
+
+    this.props.history.push("/");
   };
 
   handleChange = ({ target }) => {

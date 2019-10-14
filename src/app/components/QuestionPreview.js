@@ -3,15 +3,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class QuestionPreview extends Component {
-  state = {};
   render() {
     const { id, question } = this.props;
+
     return (
       <div>
         {question && (
-          <Link to={`/question/${id}`}>
-            {id}: Would you rather: {question.optionOne.text} or {question.optionTwo.text} ?
-          </Link>
+          <div>
+            <Link to={`/question/${id}`}>
+              Would you rather: {question.optionOne.text} or {question.optionTwo.text}? (
+              {new Date(question.timestamp).toUTCString()})
+            </Link>
+          </div>
         )}
       </div>
     );

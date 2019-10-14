@@ -14,8 +14,6 @@ class Dashboard extends Component {
     if (loading === false && users[authUser]) {
       answeredIds = Object.keys(users[authUser].answers);
       unansweredIds = _.difference(questionIds, answeredIds);
-      console.log("Answered: ", answeredIds);
-      console.log("Unanswered: ", unansweredIds);
     }
 
     return (
