@@ -47,6 +47,7 @@ class NewQuestion extends Component {
 
     return (
       <div>
+        <h3>Would you rather?</h3>
         <form onSubmit={this.handleSubmit}>
           <input
             name="optionOneText"

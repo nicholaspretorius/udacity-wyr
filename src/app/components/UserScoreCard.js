@@ -5,8 +5,11 @@ const UserScoreCard = ({ user }) => {
     return (
       <div>
         <h4>{user.name}</h4>
-        <p>Answered questions: {user.score.answers}</p>
+        <div>
+          <img src={user.avatarURL} alt={user.name} />
+        </div>
         <p>Asked questions: {user.score.questions}</p>
+        <p>Answered questions: {user.score.answers}</p>
         <p>Score: {user.score.total}</p>
       </div>
     );
