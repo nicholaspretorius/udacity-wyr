@@ -26,7 +26,7 @@ const Nav = props => {
             Leaderboard
           </NavLink>
 
-          <NavLink to="/new" className="item">
+          <NavLink to="/add" className="item">
             New Question
           </NavLink>
           <div className="right menu">
