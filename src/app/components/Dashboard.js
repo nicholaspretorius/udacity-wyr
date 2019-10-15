@@ -5,18 +5,24 @@ import { Tab, Menu, Label } from "semantic-ui-react";
 
 import QuestionList from "./QuestionList";
 
+function getAnsweredIds(questions, user) {
+  return Object.keys(questions)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    .filter(q => {
+      return Object.keys(user.answers).includes(q);
+    });
+}
+
 class Dashboard extends Component {
   render() {
     const { loading, questionIds, questions, users, authUser } = this.props;
-    let answeredIds, unansweredIds;
-    let panes = [];
+    const user = users[authUser];
+    let answeredIds,
+      unansweredIds,
+      panes = [];
 
-    if (loading === false && users[authUser]) {
-      answeredIds = Object.keys(questions)
-        .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-        .filter(q => {
-          return Object.keys(users[authUser].answers).includes(q);
-        });
+    if (loading === false && user) {
+      answeredIds = getAnsweredIds(questions, user);
       unansweredIds = _.difference(questionIds, answeredIds);
 
       panes = [
@@ -50,7 +56,6 @@ class Dashboard extends Component {
     return (
       <div>
         <h2>Dashboard</h2>
-
         {loading === false && users && questions && <Tab panes={panes} />}
       </div>
     );
@@ -60,12 +65,12 @@ class Dashboard extends Component {
 function mapStateToProps({ authUser, users, questions }) {
   return {
     loading: users[authUser] === undefined,
-    questionIds: Object.keys(questions).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    ),
     questions,
     users,
-    authUser
+    authUser,
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    )
   };
 }
 
