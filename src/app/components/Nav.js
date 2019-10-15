@@ -45,9 +45,9 @@ const Nav = props => {
       )}
       {authUser === "" && (
         <div className="right menu">
-          <Link to="/login" className="item">
+          <NavLink to="/login" className="item">
             Login
-          </Link>
+          </NavLink>
         </div>
       )}
     </nav>
