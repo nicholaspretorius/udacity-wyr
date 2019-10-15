@@ -5,8 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 import { logoutAuthUser } from "./../../actions/authUser";
 import { logout } from "./../services/localStorage";
 
-import "./Nav.css";
-
 const Nav = props => {
   const { authUser, dispatch } = props;
 

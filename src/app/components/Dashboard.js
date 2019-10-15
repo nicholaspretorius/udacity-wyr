@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
+import { Tab } from "semantic-ui-react";
 
 import QuestionList from "./QuestionList";
 
 class Dashboard extends Component {
-  state = {};
-
   render() {
     const { loading, questionIds, questions, users, authUser } = this.props;
     let answeredIds, unansweredIds;
@@ -20,17 +19,30 @@ class Dashboard extends Component {
       unansweredIds = _.difference(questionIds, answeredIds);
     }
 
+    const panes = [
+      {
+        menuItem: "Unanswered",
+        render: () => (
+          <Tab.Pane>
+            <QuestionList questions={unansweredIds} title="Unanswered Questions" />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: "Answered",
+        render: () => (
+          <Tab.Pane>
+            <QuestionList questions={answeredIds} title="Answered Questions" />
+          </Tab.Pane>
+        )
+      }
+    ];
+
     return (
       <div>
         <h2>Dashboard</h2>
-        {loading === false && users && questions && (
-          <div>
-            {unansweredIds && (
-              <QuestionList questions={unansweredIds} title="Unanswered Questions" />
-            )}
-            {answeredIds && <QuestionList questions={answeredIds} title="Answered Questions" />}
-          </div>
-        )}
+
+        {loading === false && users && questions && <Tab panes={panes} />}
       </div>
     );
   }
