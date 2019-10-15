@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -50,30 +50,37 @@ class Question extends Component {
       <div>
         {question && hasAnswered && <QuestionResults id={id} />}
         {question && !hasAnswered && (
-          <form onSubmit={this.handleSubmit}>
-            <span>Would you rather:</span>
+          <Fragment>
             <div>
-              <input
-                type="radio"
-                name="answer"
-                value="optionOne"
-                checked={selectedOption === "optionOne"}
-                onChange={this.handleChange}
-              />
-              <label>{question.optionOne.text}</label>
+              <img src={user.avatarURL} alt={user.name} />
+              <p>{user.name} asks:</p>
             </div>
-            <div>
-              <input
-                type="radio"
-                name="answer"
-                value="optionTwo"
-                checked={selectedOption === "optionTwo"}
-                onChange={this.handleChange}
-              />
-              <label>{question.optionTwo.text}</label>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+            <form onSubmit={this.handleSubmit}>
+              <span>Would you rather:</span>
+              <div>
+                <input
+                  type="radio"
+                  name="answer"
+                  value="optionOne"
+                  checked={selectedOption === "optionOne"}
+                  onChange={this.handleChange}
+                />
+                <label> {question.optionOne.text}</label>
+              </div>
+              <p>OR</p>
+              <div>
+                <input
+                  type="radio"
+                  name="answer"
+                  value="optionTwo"
+                  checked={selectedOption === "optionTwo"}
+                  onChange={this.handleChange}
+                />
+                <label> {question.optionTwo.text}</label>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </Fragment>
         )}
         {!question && <Redirect to="/" />}
       </div>

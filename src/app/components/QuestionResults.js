@@ -10,17 +10,22 @@ class QuestionResults extends Component {
       <div>
         {question && user && (
           <div>
-            <h3>Question {id}: Results</h3>
+            <h3>Would you rather Results</h3>
             <p>
-              {optionOne.text} has {optionOne.votes.length} out of {total} answers.
+              {optionOne.text}
               <br />
-              {(optionOne.votes.length / total) * 100} %
+              has {optionOne.votes.length} out of {total} answers. ({" "}
+              {(optionOne.votes.length / total) * 100} %)
+              <br />
               {user.answers[id] === "optionOne" && <span>You chose!</span>}
             </p>
+            <p>OR</p>
             <p>
-              {optionTwo.text} has {optionTwo.votes.length} out of {total} answers.
+              {optionTwo.text}
               <br />
-              {(optionTwo.votes.length / total) * 100} %
+              has {optionTwo.votes.length} out of {total} answers. (
+              {(optionTwo.votes.length / total) * 100} %)
+              <br />
               {user.answers[id] === "optionTwo" && <span>You chose!</span>}
             </p>
           </div>
