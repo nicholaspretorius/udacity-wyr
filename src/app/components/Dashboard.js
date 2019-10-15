@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import { Tab, Menu, Label } from "semantic-ui-react";
 
@@ -20,6 +21,10 @@ class Dashboard extends Component {
     let answeredIds,
       unansweredIds,
       panes = [];
+
+    if (authUser === "") {
+      return <Redirect to="/login" />;
+    }
 
     if (loading === false && user) {
       answeredIds = getAnsweredIds(questions, user);

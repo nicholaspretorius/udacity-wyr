@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { handleAddQuestion } from "./../../actions/questions";
 
@@ -38,6 +39,11 @@ class NewQuestion extends Component {
 
   render() {
     const { optionOneText, optionTwoText } = this.state.data;
+    const { authUser } = this.props;
+
+    if (authUser === "") {
+      return <Redirect to="/login" />;
+    }
 
     return (
       <div>
@@ -63,4 +69,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion);
+function mapStateToProps({ authUser }) {
+  return {
+    authUser
+  };
+}
+
+export default connect(mapStateToProps)(NewQuestion);
