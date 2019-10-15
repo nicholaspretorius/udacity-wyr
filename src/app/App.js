@@ -33,15 +33,15 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           {loading === false && (
-            <div className="app">
+            <div className="app-wyr ui container">
               <Nav />
               <Switch>
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/question/:id" component={Question} />
                 <Route path="/new" component={NewQuestion} />
-                <Route path="/leaderboard" component={Leaderboard} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/logout" exact component={Logout} />
+                <Route path="/leaderboard" exact component={Leaderboard} />
+                <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
                 <Route component={NotFound} />
               </Switch>
             </div>

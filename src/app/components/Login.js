@@ -13,12 +13,12 @@ class Login extends Component {
     e.preventDefault();
     const user = this.state.user;
     const { dispatch } = this.props;
+
     dispatch(setAuthUser(user));
     login(user);
+
     const { state } = this.props.location;
-    setTimeout(() => {
-      window.location = state ? state.from.pathname : "/";
-    }, 5000);
+    window.location = state ? state.from.pathname : "/";
   };
 
   handleChange = ({ target }) => {

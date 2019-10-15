@@ -1,48 +1,58 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { logoutAuthUser } from "./../../actions/authUser";
 import { logout } from "./../services/localStorage";
+
+import "./Nav.css";
 
 const Nav = props => {
   const { authUser, dispatch } = props;
 
   return (
-    <div>
+    <nav className="ui secondary menu">
+      <Link to="/">
+        <div className="header item">
+          <h3>Would you rather?</h3>
+        </div>
+      </Link>
       {authUser !== "" && (
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/leaderboard">Leaderboard</Link>
-          </li>
-          <li>
-            <Link to="/new">New Question</Link>
-          </li>
-          <li>
-            <Link
+        <Fragment>
+          <NavLink exact to="/" className="item">
+            Home
+          </NavLink>
+
+          <NavLink to="/leaderboard" className="item">
+            Leaderboard
+          </NavLink>
+
+          <NavLink to="/new" className="item">
+            New Question
+          </NavLink>
+          <div className="right menu">
+            <div className="item">{authUser}</div>
+            <NavLink
               to="/logout"
               onClick={() => {
                 logout();
                 dispatch(logoutAuthUser(authUser));
               }}
+              className="item"
             >
               Logout
-            </Link>
-          </li>
-          <li>{authUser}</li>
-        </ul>
+            </NavLink>
+          </div>
+        </Fragment>
       )}
       {authUser === "" && (
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
+        <div className="right menu">
+          <Link to="/login" className="item">
+            Login
+          </Link>
+        </div>
       )}
-    </div>
+    </nav>
   );
 };
 
