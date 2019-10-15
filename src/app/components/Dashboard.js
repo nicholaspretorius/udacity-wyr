@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Tab } from "semantic-ui-react";
+import { Tab, Menu, Label } from "semantic-ui-react";
 
 import QuestionList from "./QuestionList";
 
@@ -9,6 +9,7 @@ class Dashboard extends Component {
   render() {
     const { loading, questionIds, questions, users, authUser } = this.props;
     let answeredIds, unansweredIds;
+    let panes = [];
 
     if (loading === false && users[authUser]) {
       answeredIds = Object.keys(questions)
@@ -17,26 +18,34 @@ class Dashboard extends Component {
           return Object.keys(users[authUser].answers).includes(q);
         });
       unansweredIds = _.difference(questionIds, answeredIds);
-    }
 
-    const panes = [
-      {
-        menuItem: "Unanswered",
-        render: () => (
-          <Tab.Pane>
-            <QuestionList questions={unansweredIds} title="Unanswered Questions" />
-          </Tab.Pane>
-        )
-      },
-      {
-        menuItem: "Answered",
-        render: () => (
-          <Tab.Pane>
-            <QuestionList questions={answeredIds} title="Answered Questions" />
-          </Tab.Pane>
-        )
-      }
-    ];
+      panes = [
+        {
+          menuItem: (
+            <Menu.Item key="unanswered">
+              Unanswered<Label>{unansweredIds.length}</Label>
+            </Menu.Item>
+          ),
+          render: () => (
+            <Tab.Pane>
+              <QuestionList questions={unansweredIds} title="Unanswered Questions" />
+            </Tab.Pane>
+          )
+        },
+        {
+          menuItem: (
+            <Menu.Item key="answered">
+              Answered<Label>{answeredIds.length}</Label>
+            </Menu.Item>
+          ),
+          render: () => (
+            <Tab.Pane>
+              <QuestionList questions={answeredIds} title="Answered Questions" />
+            </Tab.Pane>
+          )
+        }
+      ];
+    }
 
     return (
       <div>
