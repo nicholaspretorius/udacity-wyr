@@ -1,21 +1,14 @@
 import { showLoading, hideLoading } from "react-redux-loading";
 
 import { getUsersAndQuestionsData } from "./../utils/api";
-
 import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
-import { setAuthUser } from "./authUser";
-import { getItem } from "./../app/services/localStorage";
-
-//const AUTHED_USER = "sarahedo";
-const AUTHED_USER = getItem("authUser") || "";
 
 export function handleInitialData() {
   return dispatch => {
     dispatch(showLoading());
     return getUsersAndQuestionsData()
       .then(({ users, questions }) => {
-        dispatch(setAuthUser(AUTHED_USER));
         dispatch(receiveUsers(users));
         dispatch(receiveQuestions(questions));
         dispatch(hideLoading());

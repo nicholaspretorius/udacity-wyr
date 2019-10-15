@@ -16,7 +16,9 @@ class Login extends Component {
     dispatch(setAuthUser(user));
     login(user);
     const { state } = this.props.location;
-    window.location = state ? state.from.pathname : "/";
+    setTimeout(() => {
+      window.location = state ? state.from.pathname : "/";
+    }, 5000);
   };
 
   handleChange = ({ target }) => {

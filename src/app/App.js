@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 
 import { handleInitialData } from "./../actions/shared";
+import { setAuthUser } from "./../actions/authUser";
+import { getCurrentUser } from "./../app/services/localStorage";
 
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
@@ -19,6 +21,8 @@ import "./App.css";
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
+    const user = getCurrentUser();
+    dispatch(setAuthUser(user));
     dispatch(handleInitialData());
   }
 
