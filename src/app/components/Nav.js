@@ -6,7 +6,8 @@ import { logoutAuthUser } from "./../../actions/authUser";
 import { logout } from "./../services/localStorage";
 
 const Nav = props => {
-  const { authUser, dispatch } = props;
+  const { authUser, users, dispatch } = props;
+  const user = users[authUser];
 
   return (
     <nav className="ui secondary menu">
@@ -15,7 +16,7 @@ const Nav = props => {
           <h3>Would you rather?</h3>
         </div>
       </Link>
-      {authUser !== "" && (
+      {authUser !== "" && user && (
         <Fragment>
           <NavLink exact to="/" className="item">
             Home
@@ -29,7 +30,7 @@ const Nav = props => {
             New Question
           </NavLink>
           <div className="right menu">
-            <div className="item">{authUser}</div>
+            <div className="item">{user.name}</div>
             <NavLink
               to="/logout"
               onClick={() => {
