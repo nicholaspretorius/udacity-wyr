@@ -46,6 +46,10 @@ a:hover {
   position: relative;
 }
 
+.ui.circular.segment {
+  padding: 1em;
+}
+
 .your-vote {
   position: absolute;
   top: 0;

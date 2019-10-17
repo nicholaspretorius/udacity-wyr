@@ -7,6 +7,7 @@ class QuestionResults extends Component {
     const { id, question, user, users } = this.props;
     const { optionOne, optionTwo } = question;
     const total = optionOne.votes.length + optionTwo.votes.length;
+    const vote = { width: 15, height: 15 };
     return (
       <div>
         <Segment>
@@ -35,7 +36,13 @@ class QuestionResults extends Component {
                     />
 
                     {user.answers[id] === "optionOne" && (
-                      <span className="your-vote">You chose!</span>
+                      <div className="your-vote">
+                        <Segment circular inverted style={vote} color="teal">
+                          You
+                          <br />
+                          chose!
+                        </Segment>
+                      </div>
                     )}
                   </div>
                   <Divider horizontal>OR</Divider>
@@ -52,7 +59,13 @@ class QuestionResults extends Component {
                     />
 
                     {user.answers[id] === "optionTwo" && (
-                      <span className="your-vote">You chose!</span>
+                      <div className="your-vote">
+                        <Segment circular inverted style={vote} color="teal">
+                          You
+                          <br />
+                          chose!
+                        </Segment>
+                      </div>
                     )}
                   </div>
                 </Card.Description>
