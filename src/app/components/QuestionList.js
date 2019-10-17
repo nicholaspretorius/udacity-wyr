@@ -8,7 +8,8 @@ class QuestionList extends Component {
     return (
       <div>
         <h3>{title}</h3>
-        <ul>
+
+        <ul className="question-list">
           {questions &&
             questions.map(id => (
               <li key={id}>

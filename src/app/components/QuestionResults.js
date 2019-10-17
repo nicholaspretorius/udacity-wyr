@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Progress } from "semantic-ui-react";
 
 class QuestionResults extends Component {
   render() {
@@ -14,8 +15,8 @@ class QuestionResults extends Component {
             <p>
               {optionOne.text}
               <br />
-              has {optionOne.votes.length} out of {total} answers. ({" "}
-              {(optionOne.votes.length / total) * 100} %)
+              has {optionOne.votes.length} out of {total} answers.
+              <Progress percent={(optionOne.votes.length / total) * 100} progress />
               <br />
               {user.answers[id] === "optionOne" && <span>You chose!</span>}
             </p>
@@ -23,8 +24,8 @@ class QuestionResults extends Component {
             <p>
               {optionTwo.text}
               <br />
-              has {optionTwo.votes.length} out of {total} answers. (
-              {(optionTwo.votes.length / total) * 100} %)
+              has {optionTwo.votes.length} out of {total} answers.
+              <Progress percent={(optionTwo.votes.length / total) * 100} progress />
               <br />
               {user.answers[id] === "optionTwo" && <span>You chose!</span>}
             </p>

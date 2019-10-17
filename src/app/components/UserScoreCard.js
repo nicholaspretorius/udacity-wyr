@@ -5,7 +5,7 @@ const UserScoreCard = ({ user }) => {
     return (
       <div>
         <h4>{user.name}</h4>
-        <div>
+        <div className="label">
           <img src={user.avatarURL} alt={user.name} />
         </div>
         <p>Asked questions: {user.score.questions}</p>

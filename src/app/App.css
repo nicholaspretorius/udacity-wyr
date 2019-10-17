@@ -1,0 +1,21 @@
+.ui.wyr-container {
+  margin-top: 2em;
+}
+
+.ui.secondary.menu .active.item {
+  background: rgba(255, 59, 63, 1);
+  color: white;
+}
+
+.ui.menu .active > .label {
+  background: #ff3b3f;
+}
+
+.question-list {
+  padding-left: 0;
+}
+
+.question-list li {
+  list-style-type: none;
+  margin: 1em 0;
+}
