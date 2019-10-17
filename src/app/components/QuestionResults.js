@@ -1,36 +1,63 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Progress } from "semantic-ui-react";
+import { Segment, Card, Image, Progress, Divider } from "semantic-ui-react";
 
 class QuestionResults extends Component {
   render() {
-    const { id, question, user } = this.props;
+    const { id, question, user, users } = this.props;
     const { optionOne, optionTwo } = question;
     const total = optionOne.votes.length + optionTwo.votes.length;
     return (
       <div>
-        {question && user && (
-          <div>
-            <h3>Would you rather Results</h3>
-            <p>
-              {optionOne.text}
-              <br />
-              has {optionOne.votes.length} out of {total} answers.
-              <Progress percent={(optionOne.votes.length / total) * 100} progress />
-              <br />
-              {user.answers[id] === "optionOne" && <span>You chose!</span>}
-            </p>
-            <p>OR</p>
-            <p>
-              {optionTwo.text}
-              <br />
-              has {optionTwo.votes.length} out of {total} answers.
-              <Progress percent={(optionTwo.votes.length / total) * 100} progress />
-              <br />
-              {user.answers[id] === "optionTwo" && <span>You chose!</span>}
-            </p>
-          </div>
-        )}
+        <Segment>
+          {question && user && (
+            <Card>
+              <Card.Content>
+                <Image
+                  floated="left"
+                  size="medium"
+                  src={users[question.author].avatarURL}
+                  className="avatar"
+                />
+                <Card.Header>{users[question.author].name} asked</Card.Header>
+                <Card.Meta>Results for Would you rather: </Card.Meta>
+                <Card.Description>
+                  <div className="result-option">
+                    <p>{optionOne.text}</p>
+
+                    <p>
+                      has {optionOne.votes.length} out of {total} answers.
+                    </p>
+                    <Progress
+                      percent={Math.floor((optionOne.votes.length / total) * 100)}
+                      progress
+                    />
+
+                    {user.answers[id] === "optionOne" && (
+                      <span className="your-vote">You chose!</span>
+                    )}
+                  </div>
+                  <Divider horizontal>OR</Divider>
+                  <div className="result-option">
+                    <p>{optionTwo.text}</p>
+
+                    <p>
+                      has {optionTwo.votes.length} out of {total} answers.
+                    </p>
+                    <Progress
+                      percent={Math.floor((optionTwo.votes.length / total) * 100)}
+                      progress
+                    />
+
+                    {user.answers[id] === "optionTwo" && (
+                      <span className="your-vote">You chose!</span>
+                    )}
+                  </div>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          )}
+        </Segment>
       </div>
     );
   }
@@ -41,7 +68,8 @@ function mapStateToProps({ questions, users, authUser }, { id }) {
     question: questions[id],
     user: users[authUser],
     authUser,
-    id
+    id,
+    users
   };
 }
 

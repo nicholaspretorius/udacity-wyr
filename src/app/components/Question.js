@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Segment, Card, Image, Button, Grid, Divider } from "semantic-ui-react";
+import { Segment, Card, Image, Button, Divider } from "semantic-ui-react";
 
 import { handleAnswerQuestion } from "./../../actions/questions";
 
@@ -49,61 +49,54 @@ class Question extends Component {
 
     return (
       <div>
+        <h3>Question</h3>
         <Segment.Group horizontal>
-          <Segment>
-            {question && hasAnswered && <QuestionResults id={id} />}
-            {question && !hasAnswered && (
-              <Card>
-                <Card.Content>
-                  <Image
-                    floated="left"
-                    size="medium"
-                    src={users[question.author].avatarURL}
-                    className="avatar"
-                  />
-                  <Card.Header>{users[question.author].name} asks</Card.Header>
-                  <Card.Meta>Would you rather: </Card.Meta>
-                  <Card.Description>
-                    <form onSubmit={this.handleSubmit}>
-                      <Grid columns={2} stackable textAlign="center">
-                        <Divider vertical>Or</Divider>
-                        <Grid.Row verticalAlign="middle">
-                          <Grid.Column>
-                            <div>
-                              <input
-                                type="radio"
-                                name="answer"
-                                value="optionOne"
-                                checked={selectedOption === "optionOne"}
-                                onChange={this.handleChange}
-                              />
-                              <label> {question.optionOne.text}</label>
-                            </div>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <div>
-                              <input
-                                type="radio"
-                                name="answer"
-                                value="optionTwo"
-                                checked={selectedOption === "optionTwo"}
-                                onChange={this.handleChange}
-                              />
-                              <label> {question.optionTwo.text}</label>
-                            </div>
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid>
-
-                      <Button type="submit">Submit</Button>
-                    </form>
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            )}
-            {!question && <Redirect to="/" />}
-          </Segment>
+          {question && hasAnswered && <QuestionResults id={id} />}
+          {!question && <Redirect to="/" />}
+          {question && !hasAnswered && (
+            <Segment>
+              <form onSubmit={this.handleSubmit}>
+                <Card>
+                  <Card.Content>
+                    <Image
+                      floated="left"
+                      size="medium"
+                      src={users[question.author].avatarURL}
+                      className="avatar"
+                    />
+                    <Card.Header>{users[question.author].name} asks</Card.Header>
+                    <Card.Meta>Would you rather: </Card.Meta>
+                    <Card.Description>
+                      <div>
+                        <input
+                          type="radio"
+                          name="answer"
+                          value="optionOne"
+                          checked={selectedOption === "optionOne"}
+                          onChange={this.handleChange}
+                        />
+                        <label> {question.optionOne.text}</label>
+                      </div>
+                      <Divider horizontal>OR</Divider>
+                      <div>
+                        <input
+                          type="radio"
+                          name="answer"
+                          value="optionTwo"
+                          checked={selectedOption === "optionTwo"}
+                          onChange={this.handleChange}
+                        />
+                        <label> {question.optionTwo.text}</label>
+                      </div>
+                    </Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>
+                    <Button type="submit">Submit</Button>
+                  </Card.Content>
+                </Card>
+              </form>
+            </Segment>
+          )}
         </Segment.Group>
       </div>
     );

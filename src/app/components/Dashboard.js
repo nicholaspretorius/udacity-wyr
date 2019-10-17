@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <h2>Dashboard</h2>
+        <h3>Dashboard</h3>
         {loading === false && users && questions && <Tab panes={panes} />}
       </div>
     );

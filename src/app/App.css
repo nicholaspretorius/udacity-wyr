@@ -19,3 +19,13 @@
   list-style-type: none;
   margin: 1em 0;
 }
+
+.result-option {
+  position: relative;
+}
+
+.your-vote {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Segment } from "semantic-ui-react";
 
 import UserScoreCard from "./UserScoreCard";
 
@@ -31,14 +32,17 @@ class Leaderboard extends Component {
     return (
       <div>
         <h3>Leaderboard</h3>
-        <ol>
-          {users &&
-            sortedUsers.map(user => (
-              <li key={user.id}>
-                <UserScoreCard user={user} />
-              </li>
-            ))}
-        </ol>
+
+        <Segment>
+          <ol>
+            {users &&
+              sortedUsers.map(user => (
+                <li key={user.id}>
+                  <UserScoreCard user={user} />
+                </li>
+              ))}
+          </ol>
+        </Segment>
       </div>
     );
   }
