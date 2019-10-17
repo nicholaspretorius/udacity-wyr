@@ -31,6 +31,7 @@ class QuestionResults extends Component {
                     <Progress
                       percent={Math.floor((optionOne.votes.length / total) * 100)}
                       progress
+                      color="teal"
                     />
 
                     {user.answers[id] === "optionOne" && (
@@ -47,6 +48,7 @@ class QuestionResults extends Component {
                     <Progress
                       percent={Math.floor((optionTwo.votes.length / total) * 100)}
                       progress
+                      color="teal"
                     />
 
                     {user.answers[id] === "optionTwo" && (

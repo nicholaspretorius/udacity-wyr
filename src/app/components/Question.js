@@ -91,7 +91,9 @@ class Question extends Component {
                     </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
-                    <Button type="submit">Submit</Button>
+                    <Button color="teal" type="submit">
+                      Submit
+                    </Button>
                   </Card.Content>
                 </Card>
               </form>
