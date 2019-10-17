@@ -11,11 +11,13 @@
   background: #ff3b3f;
 }
 
-.question-list {
+.question-list,
+.leaderboard {
   padding-left: 0;
 }
 
-.question-list li {
+.question-list li,
+.leaderboard li {
   list-style-type: none;
   margin: 1em 0;
 }

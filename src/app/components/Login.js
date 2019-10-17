@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import { Button, Form, Segment, Card } from "semantic-ui-react";
 
 import { setAuthUser } from "./../../actions/authUser";
 import { login } from "./../services/localStorage";
@@ -30,37 +30,37 @@ class Login extends Component {
   render() {
     const { users } = this.props;
     return (
-      <Grid
-        textAlign="center"
-        style={{ height: "100vh" }}
-        verticalAlign="top"
-        className="wyr-container"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h3" color="teal" textAlign="center">
-            Login
-          </Header>
+      <div>
+        <h3>Welcome</h3>
+        <Segment>
           {users && (
             <Form size="large" onSubmit={this.handleSubmit}>
-              <Segment>
-                <div className="field">
-                  <select onChange={this.handleChange} className="ui fluid selection dropdown">
-                    <option value="">Please select user</option>
-                    {Object.values(users).map(user => (
-                      <option key={user.id} name="user" value={user.id}>
-                        {user.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <Button color="teal" fluid size="large" type="submit">
-                  Login
-                </Button>
-              </Segment>
+              <Card>
+                <Card.Content>
+                  <Card.Header>Login</Card.Header>
+                  <Card.Description>
+                    <div className="field">
+                      <select onChange={this.handleChange} className="ui fluid selection dropdown">
+                        <option value="">Please select user</option>
+                        {Object.values(users).map(user => (
+                          <option key={user.id} name="user" value={user.id}>
+                            {user.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <Button color="teal" fluid size="large" type="submit">
+                    Login
+                  </Button>
+                </Card.Content>
+              </Card>
             </Form>
           )}
-        </Grid.Column>
-      </Grid>
+        </Segment>
+      </div>
     );
   }
 }
