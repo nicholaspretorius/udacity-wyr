@@ -1,4 +1,5 @@
 Project: Udacity React Nanodegree Project 2: Would you rather...
+
 Student: Nicholas Pretorius
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
