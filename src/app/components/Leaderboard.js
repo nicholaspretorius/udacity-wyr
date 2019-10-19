@@ -34,7 +34,7 @@ class Leaderboard extends Component {
         <h3>Leaderboard</h3>
 
         <Segment>
-          <ol className="leaderboard">
+          <ol className="leaderboard central">
             {users &&
               sortedUsers.map(user => (
                 <li key={user.id}>

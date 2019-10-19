@@ -34,7 +34,7 @@ class Login extends Component {
         <h3>Welcome</h3>
         <Segment>
           {users && (
-            <Form size="large" onSubmit={this.handleSubmit}>
+            <Form size="large" onSubmit={this.handleSubmit} className="central">
               <Card>
                 <Card.Content>
                   <Card.Header>Login</Card.Header>

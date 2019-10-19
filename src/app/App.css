@@ -55,3 +55,12 @@ a:hover {
   top: 0;
   right: 0;
 }
+
+.ui.central,
+.ui .central {
+  margin: 0 auto;
+}
+
+.ui.segment {
+  display: flex;
+}

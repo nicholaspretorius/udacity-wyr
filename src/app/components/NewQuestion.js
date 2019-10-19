@@ -50,7 +50,7 @@ class NewQuestion extends Component {
       <div>
         <h3>New Question</h3>
         <Segment>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="central">
             <Card>
               <Card.Content>
                 <Card.Header>Would you rather?</Card.Header>
