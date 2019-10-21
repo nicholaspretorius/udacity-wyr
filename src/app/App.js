@@ -37,7 +37,7 @@ class App extends Component {
               <Nav />
               <Switch>
                 <Route path="/" exact component={Dashboard} />
-                <Route path="/question/:id" component={Question} />
+                <Route path="/questions/:id" component={Question} />
                 <Route path="/add" component={NewQuestion} />
                 <Route path="/leaderboard" exact component={Leaderboard} />
                 <Route path="/login" component={Login} />

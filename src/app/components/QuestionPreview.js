@@ -20,7 +20,7 @@ class QuestionPreview extends Component {
           <Card.Meta>Would you rather: </Card.Meta>
           <Card.Description>
             {question && (
-              <Link to={`/question/${id}`}>
+              <Link to={`/questions/${id}`}>
                 {question.optionOne.text} or {question.optionTwo.text}?
               </Link>
             )}
