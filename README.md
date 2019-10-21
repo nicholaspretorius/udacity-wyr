@@ -1,5 +1,15 @@
 Project: Udacity React Nanodegree Project 2: Would you rather...
 
+"Would you rather..." is an application that enables you to add questions to a collection for yourself and other users to answer. The more questions you ask, and the more questions you answer, the more points you get. Questions are asked in the format: 
+
+"Would you rather ____ or ____?"
+
+For example: 
+
+"Would you rather be an astronaut or a scuba diver?"
+
+All questions and answers are recorded for points. (There are no "wrong" answers). Once you have answered a question, you will see a calculation of how many people selected which answer. 
+
 Student: Nicholas Pretorius
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
