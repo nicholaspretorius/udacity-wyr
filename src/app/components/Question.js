@@ -28,10 +28,6 @@ class Question extends Component {
         qid: id
       })
     );
-
-    this.setState({
-      selectedOption: "optionOne"
-    });
   };
 
   handleChange = ({ target }) => {
